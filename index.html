@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#151515">
+  <title>HAZRA INTERIOR</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="ambient ambient-one"></div>
+  <div class="ambient ambient-two"></div>
+
+  <section id="authView" class="auth-view">
+    <div class="auth-card glass">
+      <div class="brand-mark">HI</div>
+      <p class="eyebrow">INTERIOR WORK</p>
+      <h1>HAZRA INTERIOR</h1>
+      <p class="muted">A calm workspace for customers, materials and project summaries.</p>
+
+      <div class="auth-tabs">
+        <button class="tab active" data-auth="login">Login</button>
+        <button class="tab" data-auth="register">Create account</button>
+      </div>
+
+      <form id="authForm">
+        <label id="nameField" class="hidden">Full name
+          <input id="authName" name="name" type="text" placeholder="Your name" autocomplete="name">
+        </label>
+        <label>Email
+          <input id="authEmail" name="email" type="email" placeholder="designer@example.com" autocomplete="username" required>
+        </label>
+        <label>Password
+          <input id="authPassword" name="password" type="password" placeholder="••••••••" autocomplete="current-password" required minlength="4">
+        </label>
+        <button class="primary full" type="submit" id="authSubmit">Enter workspace</button>
+      </form>
+      <button id="changePasswordBtn" class="text-button" type="button">Forgot / Change password?</button>
+      <p id="authMessage" class="message"></p>
+
+      <div id="passwordResetPanel" class="reset-panel hidden">
+        <h3>Change password</h3>
+        <p class="muted">Enter the email used for your account and choose a new password.</p>
+        <form id="passwordResetForm">
+          <label>Email
+            <input id="resetEmail" name="reset-email" type="email" placeholder="designer@example.com" autocomplete="username" required>
+          </label>
+          <label>New password
+            <input id="resetPassword" name="new-password" type="password" placeholder="New password" autocomplete="new-password" minlength="4" required>
+          </label>
+          <label>Confirm new password
+            <input id="resetPasswordConfirm" name="confirm-password" type="password" placeholder="Repeat new password" autocomplete="new-password" minlength="4" required>
+          </label>
+          <div class="form-actions">
+            <button type="button" class="ghost" id="cancelPasswordReset">Cancel</button>
+            <button type="submit" class="primary">Update password</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <main id="appView" class="app hidden">
+    <header class="topbar glass">
+      <div>
+        <p class="eyebrow">INTERIOR WORK</p>
+        <strong>HAZRA INTERIOR</strong>
+      </div>
+      <div class="top-actions">
+        <span id="userLabel" class="muted"></span>
+        <button id="logoutBtn" class="ghost">Log out</button>
+      </div>
+    </header>
+
+    <nav class="step-nav glass">
+      <button class="step active" data-view="customers"><span>01</span> CUSTOMERS.</button>
+      <button class="step" data-view="inventory"><span>02</span> INVENTORY.</button>
+      <button class="step" data-view="summary"><span>03</span> QUOTATION.</button>
+    </nav>
+
+    <section id="customersView" class="view">
+      <div class="page-head">
+        <div>
+          <p class="eyebrow">CLIENT DIRECTORY</p>
+          <h2>CUSTOMERS.</h2>
+          <p class="muted">Keep every client's basic details ready to access.</p>
+        </div>
+        <button id="addCustomerBtn" class="primary">+ Add customer</button>
+      </div>
+
+      <div id="customerFormWrap" class="glass form-panel hidden">
+        <h3 id="customerFormTitle">New customer</h3>
+        <form id="customerForm" class="grid-form">
+          <input type="hidden" id="customerId">
+          <label>Name<input id="customerName" name="customer-name" required placeholder="Customer name" autocomplete="name"></label>
+          <label>Phone<input id="customerPhone" name="customer-phone" required placeholder="+91 98765 43210" autocomplete="tel"></label>
+          <label class="wide">Address<textarea id="customerAddress" name="customer-address" required rows="3" placeholder="Full address" autocomplete="street-address"></textarea></label>
+          <div class="form-actions wide">
+            <button type="button" class="ghost" id="cancelCustomer">Cancel</button>
+            <button class="primary" type="submit">Save customer</button>
+          </div>
+        </form>
+      </div>
+
+      <div id="customerGrid" class="card-grid"></div>
+    </section>
+
+    <section id="inventoryView" class="view hidden">
+      <div class="page-head">
+        <div>
+          <p class="eyebrow">MATERIAL LIBRARY</p>
+          <h2>INVENTORY.</h2>
+          <p class="muted">Add, edit and reuse materials whenever you need.</p>
+        </div>
+        <button id="addMaterialBtn" class="primary">+ Add material</button>
+      </div>
+
+      <div id="activeCustomerBanner" class="glass selection-banner"></div>
+
+      <div id="materialFormWrap" class="glass form-panel hidden">
+        <h3 id="materialFormTitle">Add material</h3>
+        <form id="materialForm" class="grid-form">
+          <input type="hidden" id="materialId">
+          <label>Material<input id="materialName" name="material-name" required placeholder="e.g. Veneer"></label>
+          <label>Category<input id="materialCategory" name="material-category" placeholder="Wood / Lighting / Hardware"></label>
+          <label>Price per unit<input id="materialPrice" name="material-price" required type="number" min="0" step="0.01" placeholder="0"></label>
+          <label>Quantity<input id="materialQty" name="material-qty" required type="number" min="0" step="0.01" placeholder="0"></label>
+          <label>Notes<input id="materialNotes" name="material-notes" placeholder="Finish, supplier, colour..."></label>
+          <div class="form-actions wide">
+            <button type="button" class="ghost" id="cancelMaterial">Cancel</button>
+            <button class="primary" type="submit">Save material</button>
+          </div>
+        </form>
+      </div>
+
+      <div id="materialTableWrap" class="glass table-wrap"></div>
+    </section>
+
+    <section id="summaryView" class="view hidden">
+      <div class="page-head">
+        <div>
+          <p class="eyebrow">PROJECT SUMMARY</p>
+          <h2>QUOTATION.</h2>
+          <p class="muted">Review materials, quantities and prices for the selected customer.</p>
+        </div>
+        <button id="printBtn" class="primary">Print summary</button>
+      </div>
+      <div id="summaryCard" class="glass summary-card"></div>
+    </section>
+  </main>
+
+  <script src="app.js"></script>
+</body>
+</html>
